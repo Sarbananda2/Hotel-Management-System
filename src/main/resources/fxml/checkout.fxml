@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotel.desktop.controller.CheckOutController" spacing="20.0" style="-fx-padding: 20;">
+   <children>
+      <Label text="Check Out Guest" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+      <TableView fx:id="stayTable" VBox.vgrow="ALWAYS">
+         <columns>
+            <TableColumn fx:id="idColumn" text="Stay ID" prefWidth="80.0" />
+            <TableColumn fx:id="reservationIdColumn" text="Reservation ID" prefWidth="120.0" />
+            <TableColumn fx:id="roomIdColumn" text="Room ID" prefWidth="100.0" />
+            <TableColumn fx:id="checkInColumn" text="Check In Time" prefWidth="200.0" />
+         </columns>
+      </TableView>
+      <HBox spacing="10.0" style="-fx-padding: 10;">
+         <children>
+            <Button fx:id="checkOutButton" mnemonicParsing="false" text="Check Out" style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-font-weight: bold;" />
+         </children>
+      </HBox>
+   </children>
+</VBox>

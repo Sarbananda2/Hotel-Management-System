@@ -1,0 +1,11 @@
+spring:
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
+logging:
+  level:
+    root: WARN
+    com.hotel: DEBUG
+

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotel.desktop.controller.CreateRoomController" spacing="20.0" style="-fx-padding: 50;" alignment="CENTER">
+   <children>
+      <Label text="Create New Room" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+      <GridPane hgap="10.0" vgap="10.0">
+         <columnConstraints>
+            <ColumnConstraints minWidth="150.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="200.0" />
+         </columnConstraints>
+         <children>
+            <Label text="Room Number:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <TextField fx:id="roomNumberField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Label text="Room Type:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <ComboBox fx:id="roomTypeCombo" GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="200.0" />
+         </children>
+      </GridPane>
+      <Button fx:id="createButton" mnemonicParsing="false" text="Create Room" style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-weight: bold; -fx-pref-width: 200;" />
+   </children>
+</VBox>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="mainPane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotel.desktop.controller.DashboardController">
+   <top>
+      <VBox>
+         <children>
+            <MenuBar fx:id="menuBar" />
+            <Label fx:id="welcomeLabel" text="Welcome" style="-fx-font-weight: bold; -fx-font-size: 18px; -fx-padding: 10 20 10 20;" alignment="CENTER">
+            </Label>
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <VBox alignment="CENTER" spacing="20.0" style="-fx-padding: 50;">
+         <children>
+            <Label text="Select an option from the menu above to get started" style="-fx-text-fill: gray;" />
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
+

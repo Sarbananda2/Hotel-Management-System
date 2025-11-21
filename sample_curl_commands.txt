@@ -1,0 +1,196 @@
+# Hotel Management Platform - Sample cURL Commands
+# Base URL: http://localhost:8080
+# Replace <TOKEN> with JWT token from login response
+
+# ============================================
+# AUTHENTICATION
+# ============================================
+
+# 1. Login as admin
+curl -X POST http://localhost:8080/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "admin@example.com",
+    "password": "admin123"
+  }'
+
+# Response will contain a token - use it in Authorization header for subsequent requests
+# Example: Authorization: Bearer <TOKEN>
+
+# 2. Register new user (ADMIN only)
+curl -X POST http://localhost:8080/api/auth/register \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer <TOKEN>" \
+  -d '{
+    "name": "New User",
+    "email": "newuser@example.com",
+    "password": "password123",
+    "role": "FRONTDESK"
+  }'
+
+# ============================================
+# ROOMS
+# ============================================
+
+# 3. List all rooms
+curl -X GET http://localhost:8080/api/rooms \
+  -H "Authorization: Bearer <TOKEN>"
+
+# 4. Create room type (ADMIN only)
+curl -X POST http://localhost:8080/api/room-types \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer <TOKEN>" \
+  -d '{
+    "name": "Suite",
+    "capacity": 4,
+    "baseRate": 8000.00,
+    "description": "Luxury suite"
+  }'
+
+# 5. Create room (ADMIN only)
+curl -X POST http://localhost:8080/api/rooms \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer <TOKEN>" \
+  -d '{
+    "roomNumber": "301",
+    "roomTypeId": 1
+  }'
+
+# 6. Update room status (HOUSEKEEPING/ADMIN)
+curl -X PATCH http://localhost:8080/api/rooms/1/status \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer <TOKEN>" \
+  -d '{
+    "status": "CLEAN"
+  }'
+
+# ============================================
+# RESERVATIONS
+# ============================================
+
+# 7. Create reservation
+curl -X POST http://localhost:8080/api/reservations \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer <TOKEN>" \
+  -d '{
+    "guestName": "Asha Kumar",
+    "guestEmail": "asha@example.com",
+    "phone": "+919900112233",
+    "roomTypeId": 1,
+    "checkInDate": "2025-12-10",
+    "checkOutDate": "2025-12-12"
+  }'
+
+# 8. List reservations
+curl -X GET "http://localhost:8080/api/reservations?from=2025-12-01&to=2025-12-31&status=BOOKED" \
+  -H "Authorization: Bearer <TOKEN>"
+
+# 9. Get reservation by ID
+curl -X GET http://localhost:8080/api/reservations/1 \
+  -H "Authorization: Bearer <TOKEN>"
+
+# 10. Update reservation
+curl -X PATCH http://localhost:8080/api/reservations/1 \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer <TOKEN>" \
+  -d '{
+    "guestName": "Asha Kumar",
+    "guestEmail": "asha@example.com",
+    "phone": "+919900112233",
+    "roomTypeId": 1,
+    "checkInDate": "2025-12-11",
+    "checkOutDate": "2025-12-13"
+  }'
+
+# 11. Cancel reservation
+curl -X PATCH http://localhost:8080/api/reservations/1/cancel \
+  -H "Authorization: Bearer <TOKEN>"
+
+# ============================================
+# STAYS
+# ============================================
+
+# 12. Check in
+curl -X POST http://localhost:8080/api/stays/checkin \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer <TOKEN>" \
+  -d '{
+    "reservationId": 1,
+    "roomId": 1
+  }'
+
+# 13. Check out
+curl -X POST http://localhost:8080/api/stays/1/checkout \
+  -H "Authorization: Bearer <TOKEN>"
+
+# ============================================
+# FOLIOS & PAYMENTS
+# ============================================
+
+# 14. Get folio details
+curl -X GET http://localhost:8080/api/folios/1 \
+  -H "Authorization: Bearer <TOKEN>"
+
+# 15. Add line item to folio
+curl -X POST http://localhost:8080/api/folios/1/line-items \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer <TOKEN>" \
+  -d '{
+    "type": "ROOM_CHARGE",
+    "description": "Room charge for stay",
+    "amount": 3000.00
+  }'
+
+# 16. Record cash payment
+curl -X POST http://localhost:8080/api/folios/1/payments \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer <TOKEN>" \
+  -d '{
+    "amount": 3000.00,
+    "method": "CASH",
+    "reference": "Receipt #987"
+  }'
+
+# ============================================
+# HOUSEKEEPING
+# ============================================
+
+# 17. List housekeeping tasks
+curl -X GET "http://localhost:8080/api/housekeeping/tasks?status=OPEN" \
+  -H "Authorization: Bearer <TOKEN>"
+
+# 18. Create housekeeping task
+curl -X POST http://localhost:8080/api/housekeeping/tasks \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer <TOKEN>" \
+  -d '{
+    "roomId": 1,
+    "notes": "Room needs cleaning"
+  }'
+
+# 19. Update housekeeping task
+curl -X PATCH http://localhost:8080/api/housekeeping/tasks/1 \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer <TOKEN>" \
+  -d '{
+    "status": "COMPLETED",
+    "assignedTo": 3,
+    "notes": "Cleaning completed"
+  }'
+
+# ============================================
+# REPORTS
+# ============================================
+
+# 20. Get daily report
+curl -X GET "http://localhost:8080/api/reports/daily?date=2025-12-10" \
+  -H "Authorization: Bearer <TOKEN>"
+
+# ============================================
+# AUDIT LOGS (ADMIN only)
+# ============================================
+
+# 21. Get audit logs
+curl -X GET "http://localhost:8080/api/audit?userId=1&action=CREATE_RESERVATION&limit=50" \
+  -H "Authorization: Bearer <TOKEN>"
+

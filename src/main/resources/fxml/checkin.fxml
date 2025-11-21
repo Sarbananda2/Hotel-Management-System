@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotel.desktop.controller.CheckInController" spacing="20.0">
+   <children>
+      <Label text="Check In Guest" style="-fx-font-size: 20px; -fx-font-weight: bold;">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </Label>
+      <GridPane hgap="10.0" vgap="10.0">
+         <columnConstraints>
+            <ColumnConstraints minWidth="150.0" />
+            <ColumnConstraints hgrow="ALWAYS" />
+         </columnConstraints>
+         <children>
+            <Label text="Reservation:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <ComboBox fx:id="reservationCombo" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="400.0" />
+            <Label text="Room:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <ComboBox fx:id="roomCombo" GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="400.0" />
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </GridPane>
+      <Button fx:id="checkInButton" mnemonicParsing="false" text="Check In" style="-fx-background-color: #007bff; -fx-text-fill: white; -fx-font-weight: bold; -fx-pref-width: 200;" />
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</VBox>
+

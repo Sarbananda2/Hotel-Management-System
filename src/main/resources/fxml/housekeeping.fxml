@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotel.desktop.controller.HousekeepingController" style="-fx-padding: 20;">
+   <top>
+      <VBox spacing="10.0">
+         <children>
+            <Label text="Housekeeping Tasks" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+            <HBox spacing="10.0">
+               <children>
+                  <Label text="Filter by Status:" />
+                  <ComboBox fx:id="statusFilterCombo" prefWidth="150.0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <SplitPane dividerPositions="0.6" orientation="VERTICAL">
+         <items>
+            <VBox spacing="10.0" style="-fx-padding: 10;">
+               <children>
+                  <Label text="Tasks List" style="-fx-font-weight: bold;" />
+                  <TableView fx:id="taskTable" VBox.vgrow="ALWAYS">
+                     <columns>
+                        <TableColumn fx:id="idColumn" text="ID" prefWidth="50.0" />
+                        <TableColumn fx:id="roomIdColumn" text="Room ID" prefWidth="80.0" />
+                        <TableColumn fx:id="statusColumn" text="Status" prefWidth="100.0" />
+                        <TableColumn fx:id="assignedToColumn" text="Assigned To" prefWidth="100.0" />
+                        <TableColumn fx:id="notesColumn" text="Notes" prefWidth="200.0" />
+                        <TableColumn fx:id="createdAtColumn" text="Created" prefWidth="150.0" />
+                     </columns>
+                  </TableView>
+               </children>
+            </VBox>
+            <VBox spacing="10.0" style="-fx-padding: 10;">
+               <children>
+                  <Label text="Create New Task" style="-fx-font-weight: bold;" />
+                  <GridPane hgap="10.0" vgap="10.0" style="-fx-padding: 10;">
+                     <columnConstraints>
+                        <ColumnConstraints minWidth="100.0" />
+                        <ColumnConstraints hgrow="ALWAYS" />
+                     </columnConstraints>
+                     <children>
+                        <Label text="Room:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                        <ComboBox fx:id="roomCombo" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                        <Label text="Notes:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                        <TextArea fx:id="notesField" GridPane.columnIndex="1" GridPane.rowIndex="1" prefRowCount="3" />
+                     </children>
+                  </GridPane>
+                  <Button fx:id="createTaskButton" mnemonicParsing="false" text="Create Task" style="-fx-background-color: #28a745; -fx-text-fill: white;" />
+                  
+                  <Separator />
+                  
+                  <Label text="Update Selected Task" style="-fx-font-weight: bold;" />
+                  <GridPane hgap="10.0" vgap="10.0" style="-fx-padding: 10;">
+                     <columnConstraints>
+                        <ColumnConstraints minWidth="100.0" />
+                        <ColumnConstraints hgrow="ALWAYS" />
+                     </columnConstraints>
+                     <children>
+                        <Label text="Status:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                        <ComboBox fx:id="updateStatusCombo" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                        <Label text="Assign To:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                        <ComboBox fx:id="assignToCombo" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label text="Notes:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                        <TextArea fx:id="updateNotesField" GridPane.columnIndex="1" GridPane.rowIndex="2" prefRowCount="3" />
+                     </children>
+                  </GridPane>
+                  <Button fx:id="updateTaskButton" mnemonicParsing="false" text="Update Task" style="-fx-background-color: #007bff; -fx-text-fill: white;" />
+               </children>
+            </VBox>
+         </items>
+      </SplitPane>
+   </center>
+</BorderPane>
